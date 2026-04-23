@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo listinn</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Todo listinn</h1>
+      <section id="todo-list">
+        <p>Samtals: <span id="total-count">0 </span></p>
+        <p>Lokið: <span id="completed-count">0 </span></p>
+        <p>Ólokið: <span id="uncompleted-count">0 </span></p>
+      </section>
+    </header>
+
+    <main>
+      <form id="todo-form">
+        <input
+          type="text"
+          id="todo-input"
+          placeholder="Bæta við nýju verkefni..."
+        />
+        <button type="submit">Bæta við</button>
+      </form>
+      <ul id="todo-list"></ul>
+    </main>
+
+    <footer>
+      <p>&copy; 2026 - Skilaverkefni í Vefforritun</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
