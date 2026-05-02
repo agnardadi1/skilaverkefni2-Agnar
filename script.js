@@ -1,4 +1,5 @@
-//Hér er ég að skilgreina breytirnar fyrir todo litstann og teljarana
+let tasks = [];
+
 const todoForm = document.getElementById("todo-form");
 const todoInput = document.getElementById("todo-input");
 const todoList = document.getElementById("todo-list");
@@ -6,12 +7,18 @@ const totalCount = document.getElementById("total-count");
 const completedCount = document.getElementById("completed-count");
 const uncompletedCount = document.getElementById("uncompleted-count");
 
-//
 function renderTasks() {
   todoList.innerHTML = "";
 
   tasks.forEach((task) => {
     const li = document.createElement("li");
+
+    li.classList.add("todo-item");
+
+    if (task.done) {
+      li.classList.add("completed");
+    }
+
     li.innerHTML = `
             <div class="task-info">
                 <input type="checkbox" 
@@ -28,7 +35,6 @@ function renderTasks() {
   updateStats();
 }
 
-// 4. Fall til að uppfæra tölfræði
 function updateStats() {
   const total = tasks.length;
   const completed = tasks.filter((t) => t.done).length;
@@ -38,3 +44,41 @@ function updateStats() {
   completedCount.innerText = completed;
   uncompletedCount.innerText = uncompleted;
 }
+
+todoForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const taskText = todoInput.value.trim();
+
+  if (taskText === "") {
+    alert("Vinsamlegast skrifaðu eitthvað í reitinn!");
+    return;
+  }
+
+  const newTask = {
+    id: Date.now(),
+    title: todoInput.value,
+    done: false,
+  };
+
+  tasks.push(newTask);
+  todoInput.value = "";
+  renderTasks();
+});
+
+function deleteTask(id) {
+  tasks = tasks.filter((task) => task.id !== id);
+  renderTasks();
+}
+
+function toggleTask(id) {
+  tasks = tasks.map((task) => {
+    if (task.id === id) {
+      return { ...task, done: !task.done };
+    }
+    return task;
+  });
+  renderTasks();
+}
+
+renderTasks();
