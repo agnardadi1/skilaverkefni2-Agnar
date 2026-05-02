@@ -1,4 +1,8 @@
-let tasks = [];
+let tasks = [
+  { id: 1, title: "Finna töff titil font", done: false },
+  { id: 2, title: "Fín pússa CSS", done: false },
+  { id: 3, title: "Klára JS", done: false },
+];
 
 const todoForm = document.getElementById("todo-form");
 const todoInput = document.getElementById("todo-input");
